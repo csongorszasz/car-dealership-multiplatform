@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/logout.js" defer></script>
+</head>
+<body>
+<div class="logout-button-container">
+    <button class="logout-button">Logout</button>
+</div>
+<h1>Car Dealership</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Upload Date</th>
+    </tr>
+    {{#each adverts}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{brand}}</td>
+        <td>{{year}}</td>
+        <td>{{price}}</td>
+        <td>{{uploadDate}}</td>
+    </tr>
+    {{/each}}
+</table>
+</body>
+</html>

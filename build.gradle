@@ -1,0 +1,13 @@
+subprojects {
+    apply plugin: 'java'
+    apply from: "${rootDir}/lint.gradle"
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}

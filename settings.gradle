@@ -1,0 +1,6 @@
+rootProject.name = 'scim2304-idde'
+
+include 'scim2304-backend'
+include 'scim2304-desktop'
+include 'scim2304-web'
+include 'scim2304-spring'

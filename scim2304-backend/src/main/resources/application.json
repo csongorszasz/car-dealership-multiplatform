@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "jdbc": {
+      "createTables": true,
+      "driverClass": "org.h2.Driver",
+      "url": "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
+      "username": "root",
+      "password": "password"
+    },
+    "connectionPool": {
+      "poolSize": 1
+    },
+    "dao": {
+      "factoryClass": "edu.bbte.idde.scim2304.backend.repository.mem.MemDaoFactory"
+    }
+  },
+  "prod": {
+    "jdbc": {
+      "createTables": false,
+      "driverClass": "com.mysql.cj.jdbc.Driver",
+      "url": "jdbc:mysql://localhost:3306/idde",
+      "username": "root",
+      "password": "password"
+    },
+    "connectionPool": {
+      "poolSize": 4
+    },
+    "dao": {
+      "factoryClass": "edu.bbte.idde.scim2304.backend.repository.mysql.MySQLDaoFactory"
+    }
+  }
+}
+

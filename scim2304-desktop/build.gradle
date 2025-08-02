@@ -1,0 +1,14 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':scim2304-backend')
+
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7' // logger API
+    runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.14' // logger implementation
+}
+
+application {
+    mainClass = 'edu.bbte.idde.scim2304.desktop.DealershipApp'
+}

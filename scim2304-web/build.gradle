@@ -1,0 +1,58 @@
+plugins {
+    id 'war'
+}
+
+dependencies {
+    implementation project(':scim2304-backend')
+
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.1.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7'
+    runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.14'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.3'
+    implementation group: 'com.github.jknack', name: 'handlebars', version: '4.2.0'
+}
+
+/**
+ * Tomcat base URL.
+ */
+def deploymentName = 'ROOT'
+
+// get Tomcat install directory from environment variable
+def tomcatHome = System.getenv('CATALINA_HOME')
+logger.quiet("Tomcat home detected as '${tomcatHome}'")
+
+
+// deploy the war to Tomcat
+task deploy(type: Copy, dependsOn: 'war') {
+
+    // check if Tomcat home is set correctly
+    doFirst {
+        if (!tomcatHome) {
+            throw new InvalidUserDataException("Tomcat home (CATALINA_HOME) not set")
+        }
+    }
+
+    // copy the output of the "war" task
+    from war.archiveFile
+
+    // rename the war file for proper context root
+    rename war.archiveFileName.get(), "${deploymentName}.war"
+
+    // copy to the Tomcat "webapps" subfolder
+    into "${tomcatHome}/webapps"
+}
+
+
+// deletion of Tomcat deployment
+task undeploy(type: Delete) {
+
+    // check if Tomcat home is set correctly
+    doFirst {
+        if (!tomcatHome) {
+            throw new InvalidUserDataException("Tomcat home (CATALINA_HOME) not set")
+        }
+    }
+
+    // delete the deployed war file
+    delete "${tomcatHome}/webapps/${deploymentName}.war"
+}
