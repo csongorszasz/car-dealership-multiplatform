@@ -1,4 +1,4 @@
-# Car Dealership Manager Multi-Platform App
+# Car Dealership Managing Multi-Platform App
 
 The backend for handling CRUD operations is implemented in 2 ways using:
 
